@@ -1,11 +1,16 @@
 #include "widget.h"
 
 #include <QApplication>
+#include <QIcon>
+//#define WIN32
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+#ifdef WIN32
+    app.setWindowIcon(QIcon("appico.ico"));
+#endif
     Widget w;
     w.show();
-    return a.exec();
+    return app.exec();
 }
