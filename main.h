@@ -1,0 +1,14 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+#define DEBUG //preprocessor to allow debugging if program can't be initialized correctly
+
+#include "widget.h"
+
+#include <QApplication>
+#include <QIcon>
+#include <QDebug>
+#include <QtSql>
+#include <QString>
+
+#endif // MAIN_H
