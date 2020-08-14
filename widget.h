@@ -17,6 +17,8 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void on_WorkDate_dateChanged(const QDate &date);
+    void on_WorkDate_setDefaultDate();
 
 private:
     Ui::Widget *ui;
