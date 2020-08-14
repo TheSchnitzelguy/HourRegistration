@@ -52,9 +52,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../main.cpp \
+SOURCES       = ../databasehandler.cpp \
+		../main.cpp \
 		../widget.cpp moc_widget.cpp
-OBJECTS       = main.o \
+OBJECTS       = databasehandler.o \
+		main.o \
 		widget.o \
 		moc_widget.o
 DIST          = ../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pre.prf \
@@ -231,6 +233,7 @@ DIST          = ../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pre.prf
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
+		../.qmake.stash \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -250,8 +253,10 @@ DIST          = ../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pre.prf
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/lex.prf \
-		../../HourRegistration.pro ../main.h \
-		../widget.h ../main.cpp \
+		../../HourRegistration.pro ../databasehandler.h \
+		../main.h \
+		../widget.h ../databasehandler.cpp \
+		../main.cpp \
 		../widget.cpp
 QMAKE_TARGET  = HourRegistration
 DESTDIR       = 
@@ -438,6 +443,7 @@ Makefile: ../HourRegistration.pro ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/featur
 		../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -633,6 +639,7 @@ Makefile: ../HourRegistration.pro ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/featur
 ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf:
@@ -668,8 +675,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../main.h ../widget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../main.cpp ../widget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../databasehandler.h ../main.h ../widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../databasehandler.cpp ../main.cpp ../widget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../widget.ui $(DISTDIR)/
 
 
@@ -833,6 +840,9 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+databasehandler.o: ../databasehandler.cpp ../databasehandler.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o databasehandler.o ../databasehandler.cpp
 
 main.o: ../main.cpp ../main.h \
 		../widget.h \
@@ -1058,6 +1068,44 @@ widget.o: ../widget.cpp ../widget.h \
 		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_widget.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtCore/QVariant \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QCheckBox \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qcheckbox.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QDateEdit \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qdatetimeedit.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QPlainTextEdit \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qplaintextedit.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpen.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtextlayout.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qglyphrun.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qrawfont.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontdatabase.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QTimeEdit \
 		../../../Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
 		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmessagebox.h \
