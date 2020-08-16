@@ -1,12 +1,10 @@
 #include "databasehandler.h"
 
 
-
-
-
 databaseHandler::databaseHandler(QString x)
 {
     databaseLocation = x;
+    initializeDatabase();
 }
 
 /*!
@@ -18,9 +16,9 @@ void databaseHandler::initializeDatabase()
     qDebug() << "db connection initializing...";
     QSqlDatabase hourDb;
     hourDb = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbPath = "../db/db.sqlite";
-    hourDb.setDatabaseName(dbPath);
-    qDebug() << "opening database: " << dbPath;
+    //QString dbPath = "../db/db.sqlite";
+    hourDb.setDatabaseName(databaseLocation);
+    qDebug() << "opening database: " << databaseLocation;
 
 
     if(!hourDb.open())

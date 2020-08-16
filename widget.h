@@ -24,6 +24,8 @@ private slots:
 
 
 
+    void on_reportButton_clicked(bool checked);
+
 private:
     Ui::Widget *ui;
 };

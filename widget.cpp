@@ -4,7 +4,6 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QDate>
-
 //QDateEdit *WorkDate;
 
 
@@ -80,3 +79,22 @@ void Widget::debugger()
 
 
 
+void Widget::on_reportButton_clicked(bool checked)
+{
+   // QString selectedMonth = ui->WorkDate->date().toString("MM");
+    int selectedMonth = ui->WorkDate->date().month();
+    QString longMonth;
+
+    QString  months[12] = {"januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "october", "november", "december"};
+    for (int i = 0; i < 12; i++)
+    {
+       longMonth = months[selectedMonth]; //TODO: fix one month too far bug
+    }
+
+
+
+
+  QMessageBox::question(this, "Urenregistratie", QString("Wilt u een rapport van de maand %1 exporteren?").arg(longMonth), QMessageBox::Yes | QMessageBox::No);
+  qDebug() << "selectedMonth: " << longMonth;
+}
+//QMessageBox::information(nullptr/*or parent*/, "Title",  String("This machine calculated all prime numbers under %1 %2 times in %3 seconds") .arg(MAX_PRIME).arg(NUM_OF_CORES).arg(run_time));
