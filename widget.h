@@ -18,9 +18,11 @@ public:
     void debugger();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_SubmitButton_clicked(bool checked);
     QDate on_WorkDate_dateChanged();
     void setDefaultWorkDate();
+
+
 
 private:
     Ui::Widget *ui;

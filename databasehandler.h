@@ -18,6 +18,8 @@ public:
     void initializeDatabase();
     void createTables();
     void insertJob();
+    bool checkJob();
+
 private:
     QString databaseLocation;
 

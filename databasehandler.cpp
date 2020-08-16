@@ -14,8 +14,7 @@ databaseHandler::databaseHandler(QString x)
 *@param None*/
 void databaseHandler::initializeDatabase()
 {
-    /*initialize and create database*/
-    /*
+    /*initialize and create database*/    
     qDebug() << "db connection initializing...";
     QSqlDatabase hourDb;
     hourDb = QSqlDatabase::addDatabase("QSQLITE");
@@ -31,10 +30,11 @@ void databaseHandler::initializeDatabase()
         qDebug() << "Error: database could not be opened: " << hourDb.lastError();
 
     #ifndef DEBUG
-        return -1;
+         // If database could not be laoded, kill application and return error
+        QCoreApplication::exit(1);
     #endif
     }
-    */
+
 
 
     // if(hourDb.tables()contains(QLatin1String("records")))
@@ -53,6 +53,10 @@ void databaseHandler::insertJob()
 
 }
 
+bool databaseHandler::checkJob()
+{
+
+}
 
 
 

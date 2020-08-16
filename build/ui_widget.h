@@ -25,7 +25,6 @@ QT_BEGIN_NAMESPACE
 class Ui_Widget
 {
 public:
-    QPushButton *mutateButton;
     QDateEdit *WorkDate;
     QLabel *workLabel;
     QPushButton *reportButton;
@@ -36,7 +35,7 @@ public:
     QCheckBox *pauseBox;
     QTimeEdit *pauseTime;
     QLabel *label;
-    QPushButton *pushButton;
+    QPushButton *SubmitButton;
     QPlainTextEdit *plainTextEdit;
 
     void setupUi(QWidget *Widget)
@@ -44,9 +43,6 @@ public:
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
         Widget->resize(800, 600);
-        mutateButton = new QPushButton(Widget);
-        mutateButton->setObjectName(QString::fromUtf8("mutateButton"));
-        mutateButton->setGeometry(QRect(310, 520, 141, 31));
         WorkDate = new QDateEdit(Widget);
         WorkDate->setObjectName(QString::fromUtf8("WorkDate"));
         WorkDate->setGeometry(QRect(340, 50, 110, 26));
@@ -79,9 +75,9 @@ public:
         label = new QLabel(Widget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(280, 230, 211, 31));
-        pushButton = new QPushButton(Widget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(80, 520, 121, 31));
+        SubmitButton = new QPushButton(Widget);
+        SubmitButton->setObjectName(QString::fromUtf8("SubmitButton"));
+        SubmitButton->setGeometry(QRect(80, 520, 121, 31));
         plainTextEdit = new QPlainTextEdit(Widget);
         plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
         plainTextEdit->setGeometry(QRect(170, 270, 431, 121));
@@ -94,14 +90,13 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "UrenRegistrator", nullptr));
-        mutateButton->setText(QApplication::translate("Widget", "Uren doorvoeren", nullptr));
         workLabel->setText(QApplication::translate("Widget", "Werkdatum", nullptr));
         reportButton->setText(QApplication::translate("Widget", "Maandrapport genereren", nullptr));
         startLabel->setText(QApplication::translate("Widget", "Starttijd", nullptr));
         endLabel->setText(QApplication::translate("Widget", "Eindtijd", nullptr));
         pauseBox->setText(QApplication::translate("Widget", "Pauze", nullptr));
         label->setText(QApplication::translate("Widget", "Opmerkingen/Werkzaamheden", nullptr));
-        pushButton->setText(QApplication::translate("Widget", "Nieuwe maand", nullptr));
+        SubmitButton->setText(QApplication::translate("Widget", "Doorvoeren", nullptr));
     } // retranslateUi
 
 };

@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>UrenRegistrator</string>
   </property>
-  <widget class="QPushButton" name="mutateButton">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>520</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Uren doorvoeren</string>
-   </property>
-  </widget>
   <widget class="QDateEdit" name="WorkDate">
    <property name="geometry">
     <rect>
@@ -158,7 +145,7 @@
     <string>Opmerkingen/Werkzaamheden</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="SubmitButton">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -168,7 +155,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Nieuwe maand</string>
+    <string>Doorvoeren</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="plainTextEdit">

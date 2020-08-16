@@ -22,30 +22,33 @@ Widget::~Widget()
 }
 
 
-void Widget::on_pushButton_clicked()
+void Widget::on_SubmitButton_clicked(bool checked)
 {
-
     qDebug() << "submit button pressed!";
     //QMessageBox::information(this, "Message", "Submit", QMessageBox::Ok);
 
     QMessageBox::StandardButton button;
+    QMessageBox message;
+
     button = QMessageBox::question(this, "Urenregistratie", "Ingevoerde uren bij maand rekenen?", QMessageBox::Yes | QMessageBox::No);
 
 
     if(button == QMessageBox::Yes)
     {
+        //push to database
         qDebug() << "Hours pushed to database";
+        message.information(this, "Info", "Uren zijn succesvol doorgevoerd!");
     }
     else
     {
         qDebug() << "Hour mutation cancelled";
+        message.warning(this, "Info", "Uren zijn niet doorgevoerd!");
     }
 
 #ifdef DEBUG
     debugger();
 #endif
 }
-
 
 
 QDate Widget::on_WorkDate_dateChanged()
@@ -70,4 +73,10 @@ void Widget::debugger()
     */
     QDate enteredDate = on_WorkDate_dateChanged();
     qDebug() << "Date changed!, new date: " << enteredDate;
+
 }
+
+
+
+
+

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[5];
-    char stringdata0[73];
+    QByteArrayData data[6];
+    char stringdata0[83];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,14 @@ struct qt_meta_stringdata_Widget_t {
 static const qt_meta_stringdata_Widget_t qt_meta_stringdata_Widget = {
     {
 QT_MOC_LITERAL(0, 0, 6), // "Widget"
-QT_MOC_LITERAL(1, 7, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(2, 29, 0), // ""
-QT_MOC_LITERAL(3, 30, 23), // "on_WorkDate_dateChanged"
-QT_MOC_LITERAL(4, 54, 18) // "setDefaultWorkDate"
+QT_MOC_LITERAL(1, 7, 23), // "on_SubmitButton_clicked"
+QT_MOC_LITERAL(2, 31, 0), // ""
+QT_MOC_LITERAL(3, 32, 7), // "checked"
+QT_MOC_LITERAL(4, 40, 23), // "on_WorkDate_dateChanged"
+QT_MOC_LITERAL(5, 64, 18) // "setDefaultWorkDate"
 
     },
-    "Widget\0on_pushButton_clicked\0\0"
+    "Widget\0on_SubmitButton_clicked\0\0checked\0"
     "on_WorkDate_dateChanged\0setDefaultWorkDate"
 };
 #undef QT_MOC_LITERAL
@@ -57,12 +58,12 @@ static const uint qt_meta_data_Widget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x08 /* Private */,
-       3,    0,   30,    2, 0x08 /* Private */,
-       4,    0,   31,    2, 0x08 /* Private */,
+       1,    1,   29,    2, 0x08 /* Private */,
+       4,    0,   32,    2, 0x08 /* Private */,
+       5,    0,   33,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::QDate,
     QMetaType::Void,
 
@@ -75,7 +76,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         auto *_t = static_cast<Widget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_pushButton_clicked(); break;
+        case 0: _t->on_SubmitButton_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 1: { QDate _r = _t->on_WorkDate_dateChanged();
             if (_a[0]) *reinterpret_cast< QDate*>(_a[0]) = std::move(_r); }  break;
         case 2: _t->setDefaultWorkDate(); break;
