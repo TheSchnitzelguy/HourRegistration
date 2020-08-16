@@ -35,6 +35,13 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="maximumTime">
+    <time>
+     <hour>19</hour>
+     <minute>59</minute>
+     <second>59</second>
+    </time>
+   </property>
    <property name="date">
     <date>
      <year>2000</year>

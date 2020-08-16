@@ -50,6 +50,7 @@ public:
         WorkDate = new QDateEdit(Widget);
         WorkDate->setObjectName(QString::fromUtf8("WorkDate"));
         WorkDate->setGeometry(QRect(340, 50, 110, 26));
+        WorkDate->setMaximumTime(QTime(19, 59, 59));
         WorkDate->setDate(QDate(2000, 1, 1));
         workLabel = new QLabel(Widget);
         workLabel->setObjectName(QString::fromUtf8("workLabel"));

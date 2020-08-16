@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include "main.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QDate>
@@ -12,7 +13,7 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    on_WorkDate_setDefaultDate();
+    setDefaultWorkDate();
 }
 
 Widget::~Widget()
@@ -39,19 +40,34 @@ void Widget::on_pushButton_clicked()
     {
         qDebug() << "Hour mutation cancelled";
     }
+
+#ifdef DEBUG
+    debugger();
+#endif
 }
 
 
 
-void Widget::on_WorkDate_dateChanged(const QDate &date)
+QDate Widget::on_WorkDate_dateChanged()
 {
+    QDate enteredDate;
+    enteredDate = ui->WorkDate->date();
 
+    return  enteredDate;
 }
 
 
-void Widget::on_WorkDate_setDefaultDate()
+void Widget::setDefaultWorkDate()
 {
    QDate actualDate = QDate::currentDate();
-    ui->WorkDate->setDate(actualDate);
+   ui->WorkDate->setDate(actualDate);
 }
 
+void Widget::debugger()
+{
+    /*!
+     * print the changed work date
+    */
+    QDate enteredDate = on_WorkDate_dateChanged();
+    qDebug() << "Date changed!, new date: " << enteredDate;
+}

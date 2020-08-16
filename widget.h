@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QtWidgets>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -14,11 +15,12 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+    void debugger();
 
 private slots:
     void on_pushButton_clicked();
-    void on_WorkDate_dateChanged(const QDate &date);
-    void on_WorkDate_setDefaultDate();
+    QDate on_WorkDate_dateChanged();
+    void setDefaultWorkDate();
 
 private:
     Ui::Widget *ui;

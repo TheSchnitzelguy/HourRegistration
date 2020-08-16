@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[6];
-    char stringdata0[86];
+    QByteArrayData data[5];
+    char stringdata0[73];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,13 +35,11 @@ QT_MOC_LITERAL(0, 0, 6), // "Widget"
 QT_MOC_LITERAL(1, 7, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(2, 29, 0), // ""
 QT_MOC_LITERAL(3, 30, 23), // "on_WorkDate_dateChanged"
-QT_MOC_LITERAL(4, 54, 4), // "date"
-QT_MOC_LITERAL(5, 59, 26) // "on_WorkDate_setDefaultDate"
+QT_MOC_LITERAL(4, 54, 18) // "setDefaultWorkDate"
 
     },
     "Widget\0on_pushButton_clicked\0\0"
-    "on_WorkDate_dateChanged\0date\0"
-    "on_WorkDate_setDefaultDate"
+    "on_WorkDate_dateChanged\0setDefaultWorkDate"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,12 +58,12 @@ static const uint qt_meta_data_Widget[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    0,   29,    2, 0x08 /* Private */,
-       3,    1,   30,    2, 0x08 /* Private */,
-       5,    0,   33,    2, 0x08 /* Private */,
+       3,    0,   30,    2, 0x08 /* Private */,
+       4,    0,   31,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QDate,    4,
+    QMetaType::QDate,
     QMetaType::Void,
 
        0        // eod
@@ -78,8 +76,9 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
-        case 1: _t->on_WorkDate_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
-        case 2: _t->on_WorkDate_setDefaultDate(); break;
+        case 1: { QDate _r = _t->on_WorkDate_dateChanged();
+            if (_a[0]) *reinterpret_cast< QDate*>(_a[0]) = std::move(_r); }  break;
+        case 2: _t->setDefaultWorkDate(); break;
         default: ;
         }
     }
