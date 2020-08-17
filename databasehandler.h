@@ -17,8 +17,8 @@ class databaseHandler
 public:
     databaseHandler(QString x);
     void initializeDatabase();
-    void createTables();
-    void insertJob();
+    bool createNewDatabase();
+    void insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause);
     bool checkJob();
 
 private:
