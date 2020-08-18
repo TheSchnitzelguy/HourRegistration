@@ -19,7 +19,7 @@ public:
     void initializeDatabase();
     static bool createNewDatabase(QSqlDatabase db);
     static void removeDatabase(QSqlDatabase db);
-    void insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause);
+    void insertJob(QDate jobDate, QTime workedHours, QTime startTime, QTime endTime, QString annotation, bool pause);
     bool checkJob();
     bool checkForExistingTables(QSqlDatabase db);
 

@@ -31,6 +31,9 @@ void databaseHandler::initializeDatabase()
         {
             existingTables = true;
             qDebug() << "Existing tables found! existingTables = " << existingTables;
+            QDate testDate = QDate::fromString("20-11-1962");
+            /*TODO: fix borked datatypes*/
+            insertJob(testDate, QTime::fromString("11"), QTime::fromString("9:00") , QTime::fromString("18:00"), "blahblah", true);
         }
         else
         {
@@ -122,19 +125,41 @@ void databaseHandler::removeDatabase(QSqlDatabase db)
 }
 
 
-void databaseHandler::insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause)
+void databaseHandler::insertJob(QDate jobDate, QTime workedHours, QTime startTime, QTime endTime, QString annotation, bool pause)
 {
-    int year = 2020;
-    QSqlQuery dateQuery, anotationQuery, timesQuery;
+    int year = jobDate.year();
+    QString formattedJobDate = jobDate.toString("MM-dd");
 
-    dateQuery.prepare("INSERT INTO Dates ("
-                      "date,"
-                      "year)"
-                      "VALUES (?,?);");
+qDebug() << "year contains: " << year << " formattedJobDate contains: " << formattedJobDate;
+//    QSqlQuery dateQuery, annotationQuery, timesQuery;
 
-    dateQuery.addBindValue(jobDate);
-    dateQuery.addBindValue(year);
+//    /*date table*/
+//    dateQuery.prepare("INSERT INTO Dates ("
+//                      "date,"
+//                      "year)"
+//                      "VALUES (?,?);");
 
+//    dateQuery.addBindValue(formattedJobDate);
+//    dateQuery.addBindValue(year);
+
+//    /*annotations table*/
+//    annotationQuery.prepare("INSERT INTO Annotations ("
+//                            "annotation)"
+//                            "VALUES (?);");
+//    annotationQuery.addBindValue(annotation);
+
+//    /*times table*/
+//    timesQuery.prepare("INSERT INTO Times ("
+//                       "workedHours,"
+//                       "startingTime,"
+//                       "endingTime,"
+//                       "pause)"
+//                       "VALUES (?,?,?,?);");
+
+//    timesQuery.addBindValue(workedHours);
+//    timesQuery.addBindValue(startTime);
+//    timesQuery.addBindValue(endTime);
+//    timesQuery.addBindValue(pause);
 
 }
 
@@ -143,7 +168,7 @@ void databaseHandler::insertJob(QDate jobDate, QTime startTime, QTime endTime, b
 
 bool databaseHandler::checkJob()
 {
-
+    return true;
 }
 
 
