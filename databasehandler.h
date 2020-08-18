@@ -21,6 +21,7 @@ public:
     static void removeDatabase(QSqlDatabase db);
     void insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause);
     bool checkJob();
+    bool checkForExistingTables(QSqlDatabase db);
 
 
 private:

@@ -12,7 +12,7 @@ databaseHandler::databaseHandler(QString x)
 *@param None*/
 void databaseHandler::initializeDatabase()
 {
-    bool databaseCreated = false;
+    bool existingTables = false;
     /*initialize and create database*/    
     qDebug() << "db connection initializing...";
     QSqlDatabase hourDb;
@@ -25,9 +25,18 @@ void databaseHandler::initializeDatabase()
     if(hourDb.open())
     {
         qDebug() << "Database opened!" ;
-        //if(hourDb.tables()contains(QLatin1String("Dates")))
-        createNewDatabase(hourDb);
-        //removeDatabase(hourDb);
+
+
+        if(checkForExistingTables(hourDb) == true)
+        {
+            existingTables = true;
+            qDebug() << "Existing tables found! existingTables = " << existingTables;
+        }
+        else
+        {
+           createNewDatabase(hourDb);
+           existingTables = false;
+        }
     }
     else if(!hourDb.open())
     {
@@ -41,13 +50,6 @@ void databaseHandler::initializeDatabase()
     #endif
     }
 
-
-
-
-    // if(hourDb.tables()contains(QLatin1String("records")))
-    //{
-
-    //}
 }
 
 bool databaseHandler::createNewDatabase(QSqlDatabase db)
@@ -59,6 +61,7 @@ bool databaseHandler::createNewDatabase(QSqlDatabase db)
                         "anoID integer NOT NULL,"
                         "timeID integer NOT NULL,"
                         "date TEXT(10),"
+                        "year TEXT(4),"
                         "FOREIGN KEY (anoID)"
                             "REFERENCES Annotations (anoID),"
                         "FOREIGN KEY (timeID)"
@@ -75,11 +78,9 @@ bool databaseHandler::createNewDatabase(QSqlDatabase db)
                           "endingTime TEXT(5),"
                           "pause BOOLEAN);";
 
-  //  QString fullNewDatabaseQuery = dateTable + annotationTable + timesTable;
-
 
 #ifdef DEBUG
-    qDebug() << "Inserting the following queries into database: \n" << dateTable <<annotationTable << timesTable;
+    qDebug() << "Inserting the following queries into database: \n" << dateTable << annotationTable << timesTable;
 #endif
 
 //TODO: fix this
@@ -120,6 +121,7 @@ void databaseHandler::removeDatabase(QSqlDatabase db)
     db.close();
 }
 
+
 void databaseHandler::insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause)
 {
     int year = 2020;
@@ -132,11 +134,30 @@ void databaseHandler::insertJob(QDate jobDate, QTime startTime, QTime endTime, b
 
     dateQuery.addBindValue(jobDate);
     dateQuery.addBindValue(year);
+
+
 }
+
+//helper functions
+/*--------------------------------------------------------------------------------------------------------------*/
 
 bool databaseHandler::checkJob()
 {
 
+}
+
+
+bool databaseHandler::checkForExistingTables(QSqlDatabase db)
+{
+
+    if (db.tables().contains(QLatin1String("Dates")) && db.tables().contains(QLatin1String("Annotations")) && db.tables().contains(QLatin1String("Times")))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
