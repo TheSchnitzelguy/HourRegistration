@@ -26,7 +26,8 @@ void databaseHandler::initializeDatabase()
     {
         qDebug() << "Database opened!" ;
         //if(hourDb.tables()contains(QLatin1String("Dates")))
-        createNewDatabase();
+        createNewDatabase(hourDb);
+        //removeDatabase(hourDb);
     }
     else if(!hourDb.open())
     {
@@ -49,46 +50,74 @@ void databaseHandler::initializeDatabase()
     //}
 }
 
-bool databaseHandler::createNewDatabase()
+bool databaseHandler::createNewDatabase(QSqlDatabase db)
 {
     QSqlQuery dbQuery;
 
     QString dateTable = "CREATE TABLE Dates("
                         "jobID integer NOT NULL PRIMARY KEY AUTOINCREMENT,"
                         "anoID integer NOT NULL,"
-                        "date TEXT(10));";
+                        "timeID integer NOT NULL,"
+                        "date TEXT(10),"
+                        "FOREIGN KEY (anoID)"
+                            "REFERENCES Annotations (anoID),"
+                        "FOREIGN KEY (timeID)"
+                            "REFERENCES Times (timeID));";
 
-    QString annotationTable = "CREATE TABLE Annotations("
-                              "anoID NOT NULL PRIMARY KEY AUTOINCREMENT,"
+    QString annotationTable = " CREATE TABLE Annotations("
+                              "anoID integer NOT NULL PRIMARY KEY AUTOINCREMENT,"
                               "annotation VARCHAR(128));";
 
-    QString timesTable = "CREATE TABLE Times("
+    QString timesTable = " CREATE TABLE Times("
                           "timeID integer NOT NULL PRIMARY KEY AUTOINCREMENT,"
                           "workedHours TEXT(5),"
                           "startingTime TEXT(5),"
                           "endingTime TEXT(5),"
                           "pause BOOLEAN);";
 
-    QString fullNewDatabaseQuery = dateTable + annotationTable + timesTable;
+  //  QString fullNewDatabaseQuery = dateTable + annotationTable + timesTable;
+
 
 #ifdef DEBUG
-    qDebug() << "Inserting the following queries into database: \n" << fullNewDatabaseQuery;
+    qDebug() << "Inserting the following queries into database: \n" << dateTable <<annotationTable << timesTable;
 #endif
 
 //TODO: fix this
-/*
-    if (dbQuery.exec(fullNewDatabaseQuery) == true)
+
+    if (dbQuery.exec(dateTable) && dbQuery.exec(annotationTable) && dbQuery.exec(timesTable) == true)
     {
-           qDebug() << "Succesfully created new database!";
-           return true;
+         qDebug() << "Succesfully created database tables!";
+         return true;
     }
     else
     {
-        qDebug() << "Error, tables could not be inserted!";
+        qDebug() << "Error, tables could not be inserted!" << dbQuery.lastError();
         return false;
     }
 
-*/
+
+    db.close();
+}
+
+void databaseHandler::removeDatabase(QSqlDatabase db)
+{
+    QSqlQuery dbQuery;
+    QString emptyDates = "DROP TABLE IF EXISTS Dates;";
+    QString emptyAnnotations = " DROP TABLE IF EXISTS Annotations;";
+    QString emptyTimes = " DROP TABLE IF EXISTS Times;";
+
+
+    if (dbQuery.exec(emptyDates) && dbQuery.exec(emptyAnnotations) && dbQuery.exec(emptyTimes) == true)
+    {
+        qDebug() << "Running statements: " << emptyDates << emptyAnnotations << emptyTimes;
+        qDebug() << "Successfully deleted all tables from database!" ;
+    }
+    else
+    {
+        qDebug() << "Error! could not clear database. Reason:" << dbQuery.lastError();
+    }
+
+    db.close();
 }
 
 void databaseHandler::insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause)

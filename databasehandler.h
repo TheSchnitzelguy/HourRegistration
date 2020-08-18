@@ -17,9 +17,11 @@ class databaseHandler
 public:
     databaseHandler(QString x);
     void initializeDatabase();
-    bool createNewDatabase();
+    static bool createNewDatabase(QSqlDatabase db);
+    static void removeDatabase(QSqlDatabase db);
     void insertJob(QDate jobDate, QTime startTime, QTime endTime, bool pause);
     bool checkJob();
+
 
 private:
     QString databaseLocation;

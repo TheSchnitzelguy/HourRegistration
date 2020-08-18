@@ -88,10 +88,9 @@ void Widget::on_reportButton_clicked(bool checked)
     QString  months[12] = {"januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "october", "november", "december"};
     for (int i = 0; i < 12; i++)
     {
-       longMonth = months[selectedMonth]; //TODO: fix one month too far bug
+       longMonth = months[selectedMonth - 1];
+
     }
-
-
 
 
   QMessageBox::question(this, "Urenregistratie", QString("Wilt u een rapport van de maand %1 exporteren?").arg(longMonth), QMessageBox::Yes | QMessageBox::No);
